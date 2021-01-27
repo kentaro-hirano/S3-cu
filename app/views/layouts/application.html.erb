@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Traveler</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class= "container">
+        <%= link_to "Traveler", root_path, class: "navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item active">
+                <%= link_to user_path(current_user), class: "nav-link" do %>
+                  <i class="fas fa-home"></i>
+                    Home
+                <% end %>
+              </li>
+              <li class="nav-item active">
+                <%= link_to travels_path, class: "nav-link" do %>
+                  <i class="fas fa-plane-departure"></i>
+                  Traveles
+                <% end %>
+              </li>
+              <li class="nav-item active">
+                <%= link_to users_path, class: "nav-link" do  %>
+                  <i class="fas fa-users"></i>
+                  Users
+                <% end %>
+              </li>
+              <li class="nav-item active">
+                <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+                  <i class="fas fa-sign-out-alt"></i>
+                  logout
+                <% end %>
+              </li>
+            <% else %>
+              <li class="nav-item active">
+                <%= link_to root_path, class: "nav-link" do %>
+                  <i class="fas fa-home"></i>
+                  Home
+                <% end %>
+              </li>
+              <li class="nav-item active">
+                <%= link_to home_about_path, class: "nav-link" do %>
+                  <i class="fas fa-link"></i>
+                  About
+                <% end %>
+              </li>
+              <li class="nav-item active">
+                <%= link_to new_user_session_path, class: "nav-link" do %>
+                  <i class="fas fa-user-plus"></i>
+                  Sign_in
+                <% end %>
+              </li>
+              <li class="nav-item active">
+                <%= link_to new_user_registration_path, class: "nav-link" do %>
+                  <i class="fas fa-sign-in-alt"></i>
+                  Sign_up
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class= "container flash">
+      <div class= "row flash">
+        <div class= "col-md-3">
+          <% flash.each do |key, value| %>
+            <p class = "alert alert-primary pt-2 pb-2 mb-0"><%= value %><p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+
+    <%= yield %>
+    <div class= "container mt-5">
+      <div class= "row">
+        <div class= "col-md-6 offset-md-3 text-center">
+          <p>CopyRight Infratop.inc</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+

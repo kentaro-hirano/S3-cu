@@ -1,0 +1,22 @@
+<div class= "container">
+    <div class= "row">
+        <div class= "col-md-6 offset-md-3">
+            <h1 class= "text-center">User info</h1>
+            <%= form_with model: @user do |f| %>
+            <div class= "form-group mb-0">
+                <%= f.label :Name %><br>
+                <%= f.text_field :name, class: "form-control" %><br>
+            </div>
+             <div class= "form-group mb-0">
+                <%= f.label :image %><br>
+                <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+            </div>
+            <div class= "form-group mb-0">
+                <%= f.label :Introduction %><br>
+                <%= f.text_field :introduction, class: "form-control" %><br>
+            </div>
+            <%= f.submit :"更新", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+    </div>
+</div>

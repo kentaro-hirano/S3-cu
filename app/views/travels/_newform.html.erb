@@ -1,0 +1,15 @@
+<h3 class= "mt-4">New Travel</h3>
+<%= form_with model: travel do |f| %>
+<div class= "form-group mb-0">
+    <%= f.label :タイトル %><br>
+    <%= f.text_field :title, class: "form-control" %><br>
+</div>
+<div class= "form-group mb-0">
+    <%= f.label :本文 %><br>
+    <%= f.text_field :body, class: "form-control" %><br>
+</div>
+<div class= "form-group">
+    <%= button_tag :type => "submit", :class =>"btn btn-success btn-s-md" do %>
+        <i class="fas fa-plus-circle mr-1"></i>新規投稿
+    <% end %></div>
+<% end %>

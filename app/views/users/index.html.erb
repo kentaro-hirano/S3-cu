@@ -1,0 +1,30 @@
+<div class= "container">
+    <div class= "row mt">
+        <div class= "col-md-3">
+            <%= render 'layouts/userinfo', user: current_user %>
+            <%= render 'travels/newform', travel: @travel %>
+        </div>
+       <div class= "col-md-8 offset-md-1">
+            <h2 class= "mb-3">Travels</h2>
+            <table class= "table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% @users.each do |user| %>
+                    <tr>
+                        <td><%= attachment_image_tag user, :profile_image, size: '40x40', fallback: "no-img.jpg" %></td>
+                        <td><%= user.name%></td>
+                        <td><%= link_to "show", user_path(user) %></td>
+                    </tr>
+                </tbody>
+                <% end %>
+            </table>
+        </div>
+    </div>
+</div>
+
