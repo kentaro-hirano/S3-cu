@@ -7,4 +7,13 @@ class User < ApplicationRecord
   has_many :travels, dependent: :destroy
 
   attachment :profile_image
+  
+  def self.looks(searches, words)
+    if searches == "perfect_match"
+      @user = User.where("name LIKE ?", "#{words}")
+    else
+      @user = User.where("name LIKE ?", "%#{words}%")
+    end
+  end
+
 end

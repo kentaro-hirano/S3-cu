@@ -1,0 +1,59 @@
+<div class= "container">
+    <div class= "row mt-">
+        <div class= "col-md-3">
+            <%= render 'layouts/userinfo', user: current_user %>
+            <%= render 'travels/newform', travel: @travel %>
+        </div>
+        <% if @range == "User" %>
+            <div class= "col-md-8 offset-md-1">
+                <h2 class= "mb-3">Travels</h2>
+                <table class= "table table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @users.each do |user| %>
+                        <tr>
+                            <td>
+                                <%= link_to user_path(user) do %>
+                                    <%= attachment_image_tag user, :profile_image, size: '40x40', fallback: "no-img.jpg" %><br>
+                                <% end %>
+                            </td>
+                            <td><%= user.name %></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% else %>
+            <div class= "col-md-8 offset-md-1">
+                <h2 class= "mb-3">Travels</h2>
+                <table class= "table table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Title</th>
+                            <th>Opinion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% @travels.each do |travel| %>
+                        <tr>
+                            <td>
+                                <%= link_to user_path(travel.user) do %>
+                                    <%= attachment_image_tag travel.user, :profile_image, size: '40x40', fallback: "no-img.jpg" %><br>
+                                <% end %>
+                            </td>
+                            <td><%= travel.title %></td>
+                            <td><%= travel.body %></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+            </div>
+        <% end %>
+    </div>
+</div>

@@ -1,3 +1,4 @@
+<%= render 'layouts/finder' %>
 <div class= "container">
     <div class= "row">
         <div class= "col-md-3">
@@ -5,7 +6,18 @@
             <%= render 'travels/newform', travel: @travel %>
         </div>
         <div class= "col-md-8 offset-md-1">
-            <h2 class= "mb-3">Travel detail</h2>
+            <div class= "container">
+                <div class= "row">
+                    <div class= "col-md-8">
+                        <h2 class= "mb-3">Travels</h2>
+                    </div>
+                    <div class= "col-md-4 h-25 mt-2">
+                        <% if @user == current_user && @user.travels.exists? %>
+                            <%= link_to "すべて削除",  destroy_all_travels_path, method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-sm" %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
             <table class= "table table-hover">
                 <thead>
                     <tr>

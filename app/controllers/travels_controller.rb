@@ -1,7 +1,7 @@
 class TravelsController < ApplicationController
 
   def index
-    @travels = Travel.all
+    @travels = Travel.search(params[:search])
     @travel = Travel.new
   end
 
@@ -34,11 +34,20 @@ class TravelsController < ApplicationController
       render 'edit'
     end
   end
+  
+    #Viewのformで取得したパラメータをモデルに渡す
 
   def destroy
     @travel = Travel.find(params[:id])
     @travel.destroy
     redirect_to travels_path
+  end
+
+  def destroy_all
+    @travel= current_user.travels
+    @travel.destroy_all
+    flash[:success] = "すべて削除しました"
+    redirect_to user_path(current_user)
   end
 
   private
