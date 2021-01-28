@@ -15,6 +15,7 @@
                         <td>Opinion</td>
                         <td></td>
                         <td></td>
+                        <td></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,19 @@
                         </td>
                         <td><%= link_to @travel.title, user_path(@travel.user) %></td>
                         <td><%= @travel.body %></td>
+                        <td>
+                            <% if @travel.favorited_by?(current_user) %>
+                                <%= link_to travel_favorites_path(@travel), method: :delete do %>
+                                    <i class="fas fa-heart"></i>
+                                    <%= @travel.favorites.count %>
+                                <% end %>
+                            <% else %>
+                                <%= link_to travel_favorites_path(@travel), method: :post do %>
+                                    <i class="far fa-heart"></i>
+                                    <%= @travel.favorites.count %>
+                                <% end %>
+                            <% end %>
+                        </td>
                         <% if @travel.user == current_user %>
                           <td>
                             <%= link_to edit_travel_path(@travel), class: "btn btn-success btn-sm w-75" do %>
@@ -38,10 +52,37 @@
                               <i class="far fa-trash-alt"></i>
                             <% end %>
                           </td>
+                         <% else %>
+                             <td></td>
+                             <td></td>
                         <% end %>
                     </tr>
                 </tbody>
             </table>
+            <table class= "table table-hover">
+                <% @travel.travel_comments.each do |travel_comment| %>
+                <tr>
+                    <td class= "w-25">
+                        <%= link_to user_path(travel_comment.user) do %>
+                            <%= attachment_image_tag travel_comment.user, :profile_image, size: '40x40', fallback: "no-img.jpg" %><br>
+                        <% end %>
+                    </td>
+                    <td class= "w-25"><%= travel_comment.user.name %></td>
+                    <td><%= travel_comment.comment %></td>
+                    <td>
+                        <%= link_to travel_travel_comments_path(travel_comment.travel, travel_comment), method: :delete, class: "btn btn-danger" do %>
+                            <i class="fas fa-trash-alt"></i>
+                        <% end %>
+                    </td>
+                </tr>
+                <% end %>
+            </table>
+            <div class= "form-group">
+                <%= form_with model:[@travel, @travel_comment], class: "form-inline", local: true do |f| %>
+                    <%= f.text_area :comment, rows:'1', class: "form-control w-75", placeholder: "コメントを追加..." %>
+                    <%= f.submit :"投稿する", class: "btn btn-success" %>
+                <% end %>
+            </div>
         </div>
     </div>
 </div>

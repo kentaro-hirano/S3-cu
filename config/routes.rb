@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'finder' => "finders#finder"
   devise_for :users
   resources :travels do 
+    resource :favorites, only: [:create, :destroy]
+    resource :travel_comments, only: [:create, :destroy]
     collection do 
       delete 'destroy_all'
     end
