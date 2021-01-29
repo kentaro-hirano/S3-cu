@@ -13,7 +13,7 @@ class TravelsController < ApplicationController
       redirect_to travels_path
     else
       @travels = Travel.all
-      render 'index'
+      render :index
     end
   end
 
@@ -32,7 +32,7 @@ class TravelsController < ApplicationController
     if @travel.update(travel_params)
       redirect_to travel_path(@travel)
     else
-      render 'edit'
+      render :edit
     end
   end
   

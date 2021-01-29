@@ -17,7 +17,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 .flash{
-  height:40px;
+//   height:40px;
 }
 
 .nav-link{
@@ -31,3 +31,27 @@
 .link{
     width:450px;
 }
+
+.like-btn {
+ width: 18px;
+ height: 22px;
+ font-size: 22px;
+ color: #808080;
+ margin-left: 20px;
+ margin-right: 5px;
+
+ }
+
+.unlike-btn {
+ width: 18px;
+ height: 22px;
+ font-size: 22px;
+ color: #e54747;
+ margin-left: 20px;
+ margin-right: 5px;
+ }
+ 
+ .img{
+     border-radius:50%;
+ }
+

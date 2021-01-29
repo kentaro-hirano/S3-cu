@@ -1,5 +1,14 @@
+<% if travel.errors.any? %>
+  <div class="alert alert-danger mb-0 mt-2">
+    <ul class= "mb-0">
+      <% travel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 <h3 class= "mt-4">New Travel</h3>
-<%= form_with model: travel do |f| %>
+<%= form_with model: travel, local: true do |f| %>
 <div class= "form-group mb-0">
     <%= f.label :タイトル %><br>
     <%= f.text_field :title, class: "form-control" %><br>

@@ -73,15 +73,11 @@
         </div>
       </div>
     </nav>
-    <div class= "container flash">
-      <div class= "row flash">
-        <div class= "col-md-3">
-          <% flash.each do |key, value| %>
-            <p class = "alert alert-primary pt-2 pb-2 mb-0"><%= value %><p>
-          <% end %>
-        </div>
-      </div>
-    </div>
+
+    <% flash.each do |key, value| %>
+      <p class = "alert alert-primary pt-2 pb-2 mb-0 w-auto"><%= value %><p>
+    <% end %>
+
 
     
 
