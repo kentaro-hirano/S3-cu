@@ -21,9 +21,10 @@
                 <tbody>
                     <% @travels.each do |travel| %>
                         <tr>
-                            <td class= "">
+                            <td>
                                 <%= link_to user_path(travel.user) do %>
-                                    <%= attachment_image_tag travel.user, :profile_image, size: '50x50', fallback: "no-img.jpg", class: "img"  %>
+                                    <%= attachment_image_tag travel.user, :profile_image, size: '50x50', fallback: "no-img.jpg", class: "img"  %><br>
+                                    <p class= "ml-2"><%= travel.user.name %></p>
                                 <% end %>
                             </td>
                             <td><%= link_to travel.title, travel_path(travel) %></td>

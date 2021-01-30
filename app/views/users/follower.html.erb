@@ -1,0 +1,40 @@
+<div class= "col-md-8 offset-md-2">
+        <h2 class= "mb-3 mt-3">Follow Users</h2>
+        <% if @follower_users.exists? %>
+          <table class= "table table-hover">
+              <thead>
+                  <tr>
+                      <th></th>
+                      <th>name</th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+              <% @follower_users.each do |user| %>
+                  <tr>
+                      <td><%= attachment_image_tag user, :profile_image, size: '50x50', fallback: "no-img.jpg", class: "img" %></td>
+                      <td><%= user.name%></td>
+                      <td><%= user.follower.count %><span class= "follow-count">フォロー中</span></td>
+                      <td><%= user.followed.count %><span class= "followed-count">フォロワー</span></td>
+                      <td>
+                          <% if user != current_user %>
+                              <% if current_user.following?(user) %>
+                                  <%= link_to 'フォロー中', unfollow_path(user.id), method: :POST, class: "btn btn-info btn-sm followed" %>
+                              <% else %>
+                                  <%= link_to 'フォローする', follow_path(user.id), method: :POST, class: "btn btn-info btn-sm follow" %>
+                              <% end %>
+                          <% end %>
+                      </td>
+                      <td><%= link_to "show", user_path(user) %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+          </table>
+        <% else %>
+          <p>フォローされているユーザーはいません</p>
+        <% end %>
+    </div>
+</div>

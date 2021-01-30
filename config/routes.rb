@@ -4,13 +4,20 @@ Rails.application.routes.draw do
   get 'home/about'
   get 'finder' => "finders#finder"
   devise_for :users
-  resources :travels do 
+  resources :travels do
     resource :favorites, only: [:create, :destroy]
     resource :travel_comments, only: [:create, :destroy]
-    collection do 
+    collection do
       delete 'destroy_all'
     end
   end
-  resources :users
+  resources :users do
+    member do
+     get 'following'
+     get 'follower'
+    end
+  end
+  post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
+  post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

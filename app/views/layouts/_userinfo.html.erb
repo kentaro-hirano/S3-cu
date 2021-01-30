@@ -1,6 +1,6 @@
 <h2 class= "mb-3">User info</h2>
 <%= attachment_image_tag user, :profile_image, size: '100x100', fallback: "no-img.jpg" %>
-<table class= "table mt-3">
+<table class= "table mt-3 mb-1">
   <tr>
     <th>name</th>
     <td><%= user.name %></td>
@@ -9,7 +9,22 @@
     <th>introduction</th>
     <td><%= user.introduction %></td>
   </tr>
+   <tr>
+    <th>フォロー数</th>
+    <td><%= link_to user.follower.count, following_user_path(user) %></td>
+  </tr>
+   <tr>
+    <th>フォロワー数</th>
+    <td><%= link_to user.followed.count, follower_user_path(user) %></td>
+  </tr>
 </table>
+<% if user != current_user %>
+    <% if current_user.following?(user) %>
+        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST, class: "btn btn-info mb-2 followed w-100" %>
+    <% else %>
+        <%= link_to 'フォローする', follow_path(user.id), method: :POST, class: "btn btn-info mb-2 follow w-100" %>
+    <% end %>
+<% end %>
 <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block w-100 pt-1 pb-1" do %>
   <i class="fas fa-edit"></i>
 <% end %>

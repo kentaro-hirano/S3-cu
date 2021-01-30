@@ -5,6 +5,15 @@ class UsersController < ApplicationController
     @travel = Travel.new
   end
 
+  def following
+    @user = User.find(params[:id])
+    @follow_users = @user.following_user
+  end
+
+  def follower
+    @user = User.find(params[:id])
+    @follower_users = @user.follower_user
+  end
   def show
     @user = User.find(params[:id])
     @travel = Travel.new

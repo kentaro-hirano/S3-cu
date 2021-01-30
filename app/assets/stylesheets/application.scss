@@ -40,7 +40,7 @@
  margin-left: 20px;
  margin-right: 5px;
 
- }
+}
 
 .unlike-btn {
  width: 18px;
@@ -50,8 +50,43 @@
  margin-left: 20px;
  margin-right: 5px;
  }
- 
+
  .img{
      border-radius:50%;
  }
+
+.follow, .followed{
+  border-radius:22px;
+  padding-right:10px;
+  padding-left:10px;
+  border-width:0.12rem;
+}
+
+.followed:hover{
+  background-color:#5EAADE;
+  border-color:#5EAADE;
+}
+
+.follow:hover{
+  background-color:#5EAADE;
+  border-color:#5EAADE;
+}
+
+.follow{
+  background-color:#fff;
+  border-color:#5EAADE;
+  color:#5EAADE;
+}
+
+.followed{
+  background-color:#5EAADE;
+  border-color:#5EAADE;
+}
+
+
+.follow-count, .followed-count{
+    font-size:13px;
+    margin-left:2px;
+}
+
 
