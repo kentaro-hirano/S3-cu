@@ -1,1 +1,1 @@
-alert('いいねを解除できている!');
+$('.favorite_buttons_<%= @travel.id %>').html("<%= j(render 'favorite', travel: @travel) %>");
