@@ -13,6 +13,7 @@
                 <thead>
                     <tr>
                         <th></th>
+                        <th>Image</th>
                         <th>Title</th>
                         <th>Opinion</th>
                         <th></th>
@@ -26,6 +27,9 @@
                                     <%= attachment_image_tag travel.user, :profile_image, size: '50x50', fallback: "no-img.jpg", class: "img"  %><br>
                                     <p class= "ml-2"><%= travel.user.name %></p>
                                 <% end %>
+                            <td>
+                                <%= attachment_image_tag travel, :image, size: '50x50', fallback: "no-img.jpg" %>
+                            </td>
                             </td>
                             <td><%= link_to travel.title, travel_path(travel) %></td>
                             <td><%= travel.body %></td>
