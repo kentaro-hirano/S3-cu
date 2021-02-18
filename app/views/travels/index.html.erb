@@ -29,7 +29,7 @@
                             </td>
                             <td><%= link_to travel.title, travel_path(travel) %></td>
                             <td><%= travel.body %></td>
-                            <td class= "favorite_buttons">
+                            <td class= "favorite_buttons_<%= travel.id %>">
                                 <%= render 'favorites/favorite', travel: travel %>
                             </td>
                         </tr>
