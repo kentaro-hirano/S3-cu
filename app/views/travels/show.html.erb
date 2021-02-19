@@ -10,44 +10,33 @@
             <table class= "table table-hover">
                 <thead>
                     <tr>
-                        <td></td>
-                        <td>Title</td>
-                        <td>Opinion</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <th style="width: 100px"></td>
+                        <th>名称</th>
+                        <th>概要</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                            <%= link_to user_path(@travel.user) do %>
-                                <%= attachment_image_tag @travel.user, :profile_image, size: '50x50', fallback: "no-img.jpg", class: "img" %><br>
-                                <p class= "ml-2"><%= @travel.user.name %></p>
-                            <% end %>
+                            <%= attachment_image_tag @travel, :image, size: '100x100', fallback: "no-img.jpg" %>
                         </td>
-                        <td><%= link_to @travel.title, user_path(@travel.user) %></td>
-                        <td><%= @travel.body %></td>
-                        <td>
-                            <% if @travel.favorited_by?(current_user) %>
-                                <%= link_to travel_favorites_path(@travel), method: :delete do %>
-                                    <i class="fas fa-heart unlike-btn"></i>
-                                    <%= @travel.favorites.count %>
-                                <% end %>
-                            <% else %>
-                                <%= link_to travel_favorites_path(@travel), method: :post do %>
-                                    <i class="far fa-heart like-btn"></i>
-                                    <%= @travel.favorites.count %>
-                                <% end %>
-                            <% end %>
+                        <td class= "pt-5"><%= link_to @travel.title, user_path(@travel.user) %></td>
+                        <td class= "pt-5"><%= @travel.body %></td>
+                        <td class= "pt-5">
+                             <div class= "favorite_buttons_<%= @travel.id %>">
+                                <%= render 'favorites/favorite', travel: @travel %>
+                            </div>
                         </td>
                         <% if @travel.user == current_user %>
-                          <td>
+                          <td class= "pt-5">
                             <%= link_to edit_travel_path(@travel), class: "btn btn-success btn-sm w-75" do %>
                                 <i class="fas fa-edit"></i>
                             <% end %>
                           </td>
-                          <td>
+                          <td class= "pt-5">
                             <%= link_to travel_path(@travel), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-sm w-75" do %>
                               <i class="far fa-trash-alt"></i>
                             <% end %>
@@ -59,6 +48,7 @@
                     </tr>
                 </tbody>
             </table>
+            <p class= "mb-1">コメント<%= @travel.travel_comments.count %>件</p>
             <table class= "table table-hover">
                 <% @travel.travel_comments.each do |travel_comment| %>
                 <tr>

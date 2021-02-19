@@ -32,11 +32,12 @@ class TravelsController < ApplicationController
     if @travel.update(travel_params)
       redirect_to travel_path(@travel)
     else
+      # binding.pry
       render :edit
     end
   end
-  
-    #Viewのformで取得したパラメータをモデルに渡す
+
+    #Viewのformで取得したパラメータをモデルに渡すC
 
   def destroy
     @travel = Travel.find(params[:id])

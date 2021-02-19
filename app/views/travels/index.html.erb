@@ -9,37 +9,39 @@
 
         <div class= "col-md-8 offset-md-1">
             <h2 class= "mb-3">Travels</h2>
-            <table class= "table table-hover">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Opinion</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @travels.each do |travel| %>
+            <% @travels.each do |travel| %>
+            <div class= "travels-section mb-4 w-100">
+                <div>
+                    <%= attachment_image_tag travel, :image, size: '220x180', fallback: "no-img.jpg" %>
+                </div>
+                <div class= "ml-3 w-100">
+                    <table class= "table">
+                        <tr class= "thead-light">
+                            <th style="width: 100px">名称</th>
+                            <th>概要</th>
+                            <th style="width: 110px">お気に入り</th>
+                        </tr>
                         <tr>
-                            <td>
-                                <%= link_to user_path(travel.user) do %>
-                                    <%= attachment_image_tag travel.user, :profile_image, size: '50x50', fallback: "no-img.jpg", class: "img"  %><br>
-                                    <p class= "ml-2"><%= travel.user.name %></p>
-                                <% end %>
-                            <td>
-                                <%= attachment_image_tag travel, :image, size: '50x50', fallback: "no-img.jpg" %>
-                            </td>
-                            </td>
                             <td><%= link_to travel.title, travel_path(travel) %></td>
                             <td><%= travel.body %></td>
-                            <td class= "favorite_buttons_<%= travel.id %>">
-                                <%= render 'favorites/favorite', travel: travel %>
+                            <td>
+                                <div class= "favorite_buttons_<%= travel.id %>">
+                                    <%= render 'favorites/favorite', travel: travel %>
+                                </div>
                             </td>
                         </tr>
-                    <% end %>
-                </tbody>
-            </table>
+                    </table>
+                   <div class= "text-right">
+                       <%= link_to travel_path(travel) do %>
+                           <p class= "mr-4 mb-2">(口コミ <%= travel.travel_comments.count %>件)</p>
+                        <% end %>
+                    </div>
+                    <div class= "text-right">
+                        <p class= "mr-4">posted by <%= link_to travel.user.name, user_path(travel.user) %></p>
+                    </div>
+                </div>
+            </div>
+            <% end %>
         </div>
     </div>
 </div>

@@ -20,6 +20,7 @@
 //   height:40px;
 }
 
+// header
 .nav-link{
     transition:all .3s ease;
 }
@@ -32,6 +33,12 @@
     width:450px;
 }
 
+// travels
+.travels-section{
+  display:flex;
+}
+
+// favorite
 .like-btn {
  width: 18px;
  height: 22px;
@@ -51,10 +58,12 @@
  margin-right: 5px;
  }
 
+// user_info
  .img{
      border-radius:50%;
  }
 
+// follow follower
 .follow, .followed{
   border-radius:22px;
   padding-right:10px;

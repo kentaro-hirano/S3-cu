@@ -9,16 +9,16 @@
 <% end %>
 <h3 class= "mt-4">New Travel</h3>
 <%= form_with model: travel, local: true do |f| %>
-  <div class= "form-group mb-0">
+  <div class= "form-group mb-3">
     <%= f.label :画像 %><br>
     <%= f.attachment_field :image %>
   </div>
   <div class= "form-group mb-0">
-    <%= f.label :タイトル %><br>
+    <%= f.label :名称 %><br>
     <%= f.text_field :title, class: "form-control" %><br>
   </div>
   <div class= "form-group mb-0">
-    <%= f.label :本文 %><br>
+    <%= f.label :概要 %><br>
     <%= f.text_field :body, class: "form-control" %><br>
   </div>
   <div class= "form-group">
