@@ -48,14 +48,17 @@
                     </tr>
                 </tbody>
             </table>
-            <p class= "mb-1">コメント<%= @travel.travel_comments.count %>件</p>
+            <div id="comments_count">
+                <%= render 'travel_comments/comments_count', travel: @travel %>
+                
+            </div>
             <table class= "table table-hover" id= "comments_area">
                 <%= render 'travel_comments/table', travel: @travel %>
             </table>
             <div class= "form-group", id= "comments_form">
                 <%= render 'travel_comments/form', travel: @travel, travel_comment: @travel_comment %>
             </div>
-        </div
+        </div>
     </div>
 </div>
 

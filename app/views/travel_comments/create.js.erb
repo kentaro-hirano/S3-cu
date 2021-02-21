@@ -1,2 +1,3 @@
 $('#comments_area').html("<%= j(render 'travel_comments/table', travel: @travel) %>")
+$('#comments_count').html("<%= j(render 'travel_comments/comments_count', travel: @travel) %>")
 $('textarea').val('')
