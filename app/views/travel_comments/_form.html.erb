@@ -1,0 +1,4 @@
+<%= form_with model:[travel, travel_comment], class: "form-inline", remote: true do |f| %>
+    <%= f.text_area :comment, rows:'1', class: "form-control w-75", placeholder: "コメントを追加..." %>
+    <%= f.submit :"投稿する", class: "btn btn-success" %>
+<% end %>

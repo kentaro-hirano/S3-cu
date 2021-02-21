@@ -49,31 +49,13 @@
                 </tbody>
             </table>
             <p class= "mb-1">コメント<%= @travel.travel_comments.count %>件</p>
-            <table class= "table table-hover">
-                <% @travel.travel_comments.each do |travel_comment| %>
-                <tr>
-                    <td class= "w-25">
-                        <%= link_to user_path(travel_comment.user) do %>
-                            <%= attachment_image_tag travel_comment.user, :profile_image, size: '45x45', fallback: "no-img.jpg", class: "img" %><br>
-                        <% end %>
-                    </td>
-                    <td class= "w-25"><%= travel_comment.user.name %></td>
-                    <td><%= travel_comment.comment %></td>
-                    <td>
-                        <%= link_to travel_travel_comments_path(travel_comment.travel, travel_comment), method: :delete, class: "btn btn-danger" do %>
-                            <i class="fas fa-trash-alt"></i>
-                        <% end %>
-                    </td>
-                </tr>
-                <% end %>
+            <table class= "table table-hover" id= "comments_area">
+                <%= render 'travel_comments/table', travel: @travel %>
             </table>
-            <div class= "form-group">
-                <%= form_with model:[@travel, @travel_comment], class: "form-inline", local: true do |f| %>
-                    <%= f.text_area :comment, rows:'1', class: "form-control w-75", placeholder: "コメントを追加..." %>
-                    <%= f.submit :"投稿する", class: "btn btn-success" %>
-                <% end %>
+            <div class= "form-group", id= "comments_form">
+                <%= render 'travel_comments/form', travel: @travel, travel_comment: @travel_comment %>
             </div>
-        </div>
+        </div
     </div>
 </div>
 
