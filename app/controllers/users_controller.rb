@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
+    @user_travels = @user.travels
     @travel = Travel.new
   end
 
