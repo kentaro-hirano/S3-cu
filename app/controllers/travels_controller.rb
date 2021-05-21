@@ -19,7 +19,7 @@ class TravelsController < ApplicationController
 
   def show
     @travel_new = Travel.new
-    @travel = Travel.find(params[:id])
+    pp @travel = Travel.find(params[:id])
     @travel_comment = TravelComment.new
   end
 

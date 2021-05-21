@@ -20,6 +20,7 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <%#= debug @travel %>
                         <td>
                             <%= attachment_image_tag @travel, :image, size: '100x100', fallback: "no-img.jpg" %>
                         </td>
@@ -50,7 +51,7 @@
             </table>
             <div id="comments_count">
                 <%= render 'travel_comments/comments_count', travel: @travel %>
-                
+
             </div>
             <table class= "table table-hover" id= "comments_area">
                 <%= render 'travel_comments/table', travel: @travel %>
