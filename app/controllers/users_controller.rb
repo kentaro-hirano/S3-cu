@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @travel = Travel.new
+    @book = Book.new
   end
 
   def following
@@ -16,8 +16,8 @@ class UsersController < ApplicationController
   end
   def show
     @user = User.find(params[:id])
-    @user_travels = @user.travels
-    @travel = Travel.new
+    @user_books = @user.books
+    @book = Book.new
   end
 
   def edit

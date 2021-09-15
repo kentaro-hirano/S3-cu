@@ -1,14 +1,14 @@
-<% if travel.errors.any? %>
+<% if book.errors.any? %>
   <div class="alert alert-danger mb-0 mt-2">
     <ul class= "mb-0">
-      <% travel.errors.full_messages.each do |message| %>
+      <% book.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
   </div>
 <% end %>
-<h3 class= "mt-4">New Travel</h3>
-<%= form_with model: travel, local: true do |f| %>
+<h3 class= "mt-4">New Book</h3>
+<%= form_with model: book, local: true do |f| %>
   <div class= "form-group mb-3">
     <%= f.label :画像 %><br>
     <%= f.attachment_field :image %>
