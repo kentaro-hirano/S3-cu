@@ -1,11 +1,11 @@
-<% if travel.favorited_by?(current_user) %>
-    <%= link_to travel_favorites_path(travel), method: :delete, remote: true do %>
+<% if book.favorited_by?(current_user) %>
+    <%= link_to book_favorites_path(book), method: :delete, remote: true do %>
         <i class="fas fa-heart unlike-btn"></i>
-        <%= travel.favorites.count %>
+        <%= book.favorites.count %>
     <% end %>
 <% else %>
-    <%= link_to travel_favorites_path(travel), method: :post, remote: true do %>
+    <%= link_to book_favorites_path(book), method: :post, remote: true do %>
         <i class="far fa-heart like-btn"></i>
-        <%= travel.favorites.count %>
+        <%= book.favorites.count %>
     <% end %>
 <% end %>

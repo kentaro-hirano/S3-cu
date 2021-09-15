@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   get 'home/about'
   get 'finder' => "finders#finder"
   devise_for :users
-  resources :travels do
+  resources :books do
     resource :favorites, only: [:create, :destroy]
-    resource :travel_comments, only: [:create, :destroy]
+    resource :book_comments, only: [:create, :destroy]
     collection do
       delete 'destroy_all'
     end
