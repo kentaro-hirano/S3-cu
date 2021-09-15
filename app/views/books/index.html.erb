@@ -4,11 +4,11 @@
         <div class= "col-md-3">
             <%= render 'layouts/userinfo', user: current_user %>
 
-            <%= render 'books/newform', book:  @book %>
+            <%= render 'books/newform', book: @book %>
         </div>
 
         <div class= "col-md-8 offset-md-1">
-            <h2 class= "mb-3">books</h2>
+            <h2 class= "mb-3">Books</h2>
             <% @books.each do |book| %>
             <div class= "books-section mb-4 w-100">
                 <!-- <div>
@@ -17,7 +17,7 @@
                 <div class= "ml-3 w-100">
                     <table class= "table">
                         <tr class= "thead-light">
-                            <th style="width: 100px">名称</th>
+                            <th style="width: 100px">タイトル</th>
                             <th>概要</th>
                             <th style="width: 110px">お気に入り</th>
                         </tr>
