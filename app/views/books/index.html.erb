@@ -65,7 +65,7 @@
           <td><%= @previous_day_ratio %>%</td>
         </tr>
       </table>
-      <h3>7日分の投稿数</h3>
+      <h3>7日間分の投稿数</h3>
       <table class="table table-bordered mt-3">
         <tr>
           <% (1..7).reverse_each do |date| %>
@@ -73,7 +73,7 @@
           <% end %>
         </tr>
         <tr>
-          <%= @daily_counts.each_index do |i| %>
+          <% @daily_counts.each_index do |i| %>
             <td><%= i < 6 ? @daily_counts[i+1] : @today_posts %></td>
           <% end %>
         </tr>
