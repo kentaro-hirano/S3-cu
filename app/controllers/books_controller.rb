@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     if params[:search]   
@@ -24,7 +25,8 @@ class BooksController < ApplicationController
   def show
     @book_new = Book.new
     pp @book = Book.find(params[:id])
-    @book_comment = BookComment.new
+    @book_comment = bookComment.new
+    impressionist(@user, nil, :unique => [:session_hash])
   end
 
   def edit
