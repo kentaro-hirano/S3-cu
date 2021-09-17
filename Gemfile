@@ -67,4 +67,4 @@ gem 'jquery-rails'
 gem 'font-awesome-sass'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
-gem 'impressionist'
+gem 'impressionist', '~>1.6.1'

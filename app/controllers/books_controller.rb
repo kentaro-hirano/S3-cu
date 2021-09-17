@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
+  impressionist :actions=>[:show]
 
   def index
     if params[:search]   
@@ -24,9 +25,10 @@ class BooksController < ApplicationController
 
   def show
     @book_new = Book.new
-    pp @book = Book.find(params[:id])
-    @book_comment = bookComment.new
-    impressionist(@user, nil, :unique => [:session_hash])
+    @book = Book.find(params[:id])
+    @book_comment = BookComment.new
+    impressionist(@book, nil, unique: [:session_hash.to_s]) # session_hashは文字列型のためto_sを使って型変換
+    @page_views = @book.impressionist_count
   end
 
   def edit
