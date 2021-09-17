@@ -8,14 +8,19 @@ class BooksController < ApplicationController
     else
       @books = Book.left_joins(:favorites).group(:id).order("count(favorites.book_id) DESC")
     end
-    @book = Book.new
-    @today_posts = Book.created_today.count
-    @yestarday_posts = Book.created_yesterday.count
-    @previous_day_ratio = Book.rate_calculation(@today_posts, @yestarday_posts)
-    @this_week_posts = Book.created_this_week.count
-    @last_week_posts = Book.created_last_week.count
-    @previous_last_week_ratio = Book.rate_calculation(@this_week_posts, @last_week_posts)
     
+    @book = Book.new
+    @today_posts = Book.created_today.count # 今日投稿されたBook
+    @yestarday_posts = Book.created_yesterday.count # 昨日投稿されたBook
+    @previous_day_ratio = Book.rate_calculation(@today_posts, @yestarday_posts) # 前日比
+    @this_week_posts = Book.created_this_week.count # 今週投稿されたBook
+    @last_week_posts = Book.created_last_week.count # 先週投稿されたBook
+    @previous_last_week_ratio = Book.rate_calculation(@this_week_posts, @last_week_posts) # 前週比
+    
+    @daily_counts = [] # 各曜日の投稿数を取得
+    (1..7).reverse_each do |i|
+      @daily_counts.push(Book.where(created_at: i.day.ago.all_day).count)
+    end   
   end
 
   def create
@@ -47,7 +52,6 @@ class BooksController < ApplicationController
     if @book.update(book_params)
       redirect_to book_path(@book)
     else
-      # binding.pry
       render :edit
     end
   end
