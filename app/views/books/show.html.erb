@@ -2,11 +2,11 @@
 <div class= "container">
     <div class= "row mt">
         <div class= "col-md-3">
-            <%= render 'layouts/userinfo', user: @travel.user %>
-            <%= render 'travels/newform', travel: @travel_new %>
+            <%= render 'layouts/userinfo', user: @book.user %>
+            <%= render 'books/newform', book: @book_new %>
         </div>
         <div class= "col-md-8 offset-md-1">
-            <h2 class= "mb-3">Travel detail</h2>
+            <h2 class= "mb-3">Book detail</h2>
             <table class= "table table-hover">
                 <thead>
                     <tr>
@@ -20,25 +20,25 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <%#= debug @travel %>
+                        <%#= debug @book %>
                         <td>
-                            <%= attachment_image_tag @travel, :image, size: '100x100', fallback: "no-img.jpg" %>
+                            <%= attachment_image_tag @book, :image, size: '100x100', fallback: "no-img.jpg" %>
                         </td>
-                        <td class= "pt-5"><%= link_to @travel.title, user_path(@travel.user) %></td>
-                        <td class= "pt-5"><%= @travel.body %></td>
+                        <td class= "pt-5"><%= link_to @book.title, user_path(@book.user) %></td>
+                        <td class= "pt-5"><%= @book.body %></td>
                         <td class= "pt-5">
-                             <div class= "favorite_buttons_<%= @travel.id %>">
-                                <%= render 'favorites/favorite', travel: @travel %>
+                             <div class= "favorite_buttons_<%= @book.id %>">
+                                <%= render 'favorites/favorite', book: @book %>
                             </div>
                         </td>
-                        <% if @travel.user == current_user %>
+                        <% if @book.user == current_user %>
                           <td class= "pt-5">
-                            <%= link_to edit_travel_path(@travel), class: "btn btn-success btn-sm w-75" do %>
+                            <%= link_to edit_book_path(@book), class: "btn btn-success btn-sm w-75" do %>
                                 <i class="fas fa-edit"></i>
                             <% end %>
                           </td>
                           <td class= "pt-5">
-                            <%= link_to travel_path(@travel), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-sm w-75" do %>
+                            <%= link_to book_path(@book), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-sm w-75" do %>
                               <i class="far fa-trash-alt"></i>
                             <% end %>
                           </td>
@@ -50,14 +50,14 @@
                 </tbody>
             </table>
             <div id="comments_count">
-                <%= render 'travel_comments/comments_count', travel: @travel %>
+                <%= render 'book_comments/comments_count', book: @book %>
 
             </div>
             <table class= "table table-hover" id= "comments_area">
-                <%= render 'travel_comments/table', travel: @travel %>
+                <%= render 'book_comments/table', book: @book %>
             </table>
             <div class= "form-group", id= "comments_form">
-                <%= render 'travel_comments/form', travel: @travel, travel_comment: @travel_comment %>
+                <%= render 'book_comments/form', book: @book, book_comment: @book_comment %>
             </div>
         </div>
     </div>
