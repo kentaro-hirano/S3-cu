@@ -7,6 +7,7 @@ class Book < ApplicationRecord
  has_many :favorites, dependent: :destroy
  
  attachment :image
+ is_impressionable
  
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?

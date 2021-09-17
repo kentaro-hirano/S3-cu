@@ -1,47 +1,47 @@
 <%= render 'layouts/finder' %>
 <div class= "container">
-    <div class= "row mt">
-        <div class= "col-md-3">
-            <%= render 'layouts/userinfo', user: current_user %>
+  <div class= "row mt">
+    <div class= "col-md-3">
+      <%= render 'layouts/userinfo', user: current_user %>
 
-            <%= render 'books/newform', book: @book %>
-        </div>
-
-        <div class= "col-md-8 offset-md-1">
-            <h2 class= "mb-3">Books</h2>
-            <% @books.each do |book| %>
-            <div class= "books-section mb-4 w-100">
-                <!-- <div>
-                    <%= attachment_image_tag book, :image, size: '220x180', fallback: "no-img.jpg" %>
-                </div> -->
-                <div class= "ml-3 w-100">
-                    <table class= "table">
-                        <tr class= "thead-light">
-                            <th style="width: 100px">タイトル</th>
-                            <th>概要</th>
-                            <th style="width: 110px">お気に入り</th>
-                        </tr>
-                        <tr>
-                            <td><%= link_to book.title, book_path(book) %></td>
-                            <td><%= book.body %></td>
-                            <td>
-                                <div class= "favorite_buttons_<%= book.id %>">
-                                    <%= render 'favorites/favorite', book: book %>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                   <div class= "text-right">
-                       <%= link_to book_path(book) do %>
-                           <p class= "mr-4 mb-2">(口コミ <%= book.book_comments.count %>件)</p>
-                        <% end %>
-                    </div>
-                    <div class= "text-right">
-                        <p class= "mr-4">posted by <%= link_to book.user.name, user_path(book.user) %></p>
-                    </div>
-                </div>
-            </div>
-            <% end %>
-        </div>
+      <%= render 'books/newform', book: @book %>
     </div>
+
+    <div class= "col-md-8 offset-md-1">
+      <h2 class= "mb-3">Books</h2>
+      <% @books.each do |book| %>
+        <div class= "books-section mb-4 w-100">
+          <!-- <div>
+              <%= attachment_image_tag book, :image, size: '220x180', fallback: "no-img.jpg" %>
+          </div> -->
+          <div class= "ml-3 w-100">
+            <table class= "table">
+                <tr class= "thead-light">
+                  <th style="width: 100px">タイトル</th>
+                  <th>概要</th>
+                  <th style="width: 110px">お気に入り</th>
+                </tr>
+                <tr>
+                  <td><%= link_to book.title, book_path(book) %></td>
+                  <td><%= book.body %></td>
+                  <td>
+                    <div class= "favorite_buttons_<%= book.id %>">
+                      <%= render 'favorites/favorite', book: book %>
+                    </div>
+                  </td>
+                </tr>
+            </table>
+            <div class= "text-right">
+              <%= link_to book_path(book) do %>
+                   <p class= "mr-4 mb-2">(口コミ <%= book.book_comments.count %>件)</p>
+              <% end %>
+            </div>
+            <div class= "text-right">
+              <p class= "mr-4">posted by <%= link_to book.user.name, user_path(book.user) %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
