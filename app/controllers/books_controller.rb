@@ -9,6 +9,13 @@ class BooksController < ApplicationController
       @books = Book.left_joins(:favorites).group(:id).order("count(favorites.book_id) DESC")
     end
     @book = Book.new
+    @today_posts = Book.created_today.count
+    @yestarday_posts = Book.created_yesterday.count
+    @previous_day_ratio = Book.rate_calculation(@today_posts, @yestarday_posts)
+    @this_week_posts = Book.created_this_week.count
+    @last_week_posts = Book.created_last_week.count
+    @previous_last_week_ratio = Book.rate_calculation(@this_week_posts, @last_week_posts)
+    
   end
 
   def create
