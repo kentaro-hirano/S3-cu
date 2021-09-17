@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chats/show'
   get 'finders/finder'
   root 'home#top'
   get 'home/about'
@@ -19,5 +20,5 @@ Rails.application.routes.draw do
   end
   post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :chats, only: [:create, :show]
 end
