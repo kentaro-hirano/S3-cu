@@ -68,3 +68,5 @@ gem 'font-awesome-sass'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'impressionist', '~>1.6.1'
+gem 'chart-js-rails', '~> 0.1.4' 
+gem 'gon', '~> 6.2.0'
