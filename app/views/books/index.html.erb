@@ -1,44 +1,46 @@
 <%= render 'layouts/finder' %>
-<div class= "container">
-  <div class= "row mt">
-    <div class= "col-md-3">
-      <%= render 'layouts/userinfo', user: current_user %>
+<div class="container">
+  <div class="row mt">
+    <div class="col-md-3">
+      <%= render 'layouts/userinfo', user: current_user %> 
       <%= render 'books/newform', book: @book %>
     </div>
-    <div class= "col-md-8 offset-md-1">
-      <h2 class= "mb-3">Books</h2>
+    <div class="col-md-8 offset-md-1">
+      <h2 class="mb-3">Books</h2>
       <% @books.each do |book| %>
-        <div class= "books-section mb-4 w-100">
-          <!-- <div>
+      <div class="books-section mb-4 w-100">
+        <!-- <div>
               <%= attachment_image_tag book, :image, size: '220x180', fallback: "no-img.jpg" %>
           </div> -->
-          <div class= "ml-3 w-100">
-            <table class= "table">
-              <tr class= "thead-light">
-                <th style="width: 100px">タイトル</th>
-                <th>概要</th>
-                <th style="width: 110px">お気に入り</th>
-              </tr>
-              <tr>
-                <td><%= link_to book.title, book_path(book) %></td>
-                <td><%= book.body %></td>
-                <td>
-                  <div class= "favorite_buttons_<%= book.id %>">
-                    <%= render 'favorites/favorite', book: book %>
-                  </div>
-                </td>
-              </tr>
-            </table>
-            <div class= "text-right">
-              <%= link_to book_path(book) do %>
-                <p class= "mr-4 mb-2">(口コミ <%= book.book_comments.count %>件)</p>
-              <% end %>
-            </div>
-            <div class= "text-right">
-              <p class= "mr-4">posted by <%= link_to book.user.name, user_path(book.user) %></p>
-            </div>
+        <div class="ml-3 w-100">
+          <table class="table">
+            <tr class="thead-light">
+              <th style="width: 100px">タイトル</th>
+              <th>概要</th>
+              <th style="width: 110px">お気に入り</th>
+            </tr>
+            <tr>
+              <td><%= link_to book.title, book_path(book) %></td>
+              <td><%= book.body %></td>
+              <td>
+                <div class="favorite_buttons_<%= book.id %>">
+                  <%= render 'favorites/favorite', book: book %>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <div class="text-right">
+            <%= link_to book_path(book) do %>
+            <p class="mr-4 mb-2">(口コミ <%= book.book_comments.count %>件)</p>
+            <% end %>
+          </div>
+          <div class="text-right">
+            <p class="mr-4">
+              posted by <%= link_to book.user.name, user_path(book.user) %>
+            </p>
           </div>
         </div>
+      </div>
       <% end %>
       <h3>投稿数の前日比・前週比</h3>
       <table class="table table-bordered mt-3">
@@ -60,8 +62,8 @@
           <th>前週比</th>
         </tr>
         <tr>
-          <td><%= @today_posts %></td>
-          <td><%= @yestarday_posts %></td>
+          <td><%= @this_week_posts %></td>
+          <td><%= @last_week_posts %></td>
           <td><%= @previous_day_ratio %>%</td>
         </tr>
       </table>
@@ -69,15 +71,20 @@
       <table class="table table-bordered mt-3">
         <tr>
           <% (1..7).reverse_each do |date| %>
-            <th><%= date == 1 ? "今日" : "#{date-1}日前" %></th>
+          <th><%= date == 1 ? "今日" : "#{date-1}日前" %></th>
           <% end %>
         </tr>
         <tr>
           <% @daily_counts.each_index do |i| %>
-            <td><%= i < 6 ? @daily_counts[i+1] : @today_posts %></td>
+          <td><%= i < 6 ? @daily_counts[i+1] : @today_posts %></td>
           <% end %>
         </tr>
       </table>
+      <p class="text-center">7日間の投稿数の推移</p>
+      <canvas id="myChart" width="400" height="200"></canvas>
+      <script>
+        draw_graph();
+      </script>
     </div>
   </div>
 </div>
