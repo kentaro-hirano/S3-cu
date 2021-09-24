@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'chats/show'
-  get 'finders/finder'
   root 'home#top'
+  get 'chats/show'
   get 'home/about'
   get 'finder' => "finders#finder"
+  # get 'finders/finder'
   devise_for :users
   resources :books do
     resource :favorites, only: [:create, :destroy]
@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   end
   resources :users do
     member do
-     get 'following'
-     get 'follower'
+      get 'following'
+      get 'follower'
     end
   end
   post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
