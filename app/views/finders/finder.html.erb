@@ -3,11 +3,11 @@
     <div class= "row mt-">
         <div class= "col-md-3">
             <%= render 'layouts/userinfo', user: current_user %>
-            <%= render 'travels/newform', travel: @travel %>
+            <%= render 'books/newform', book: @book %>
         </div>
         <% if @range == "User" %>
             <div class= "col-md-8 offset-md-1">
-                <h2 class= "mb-3">Travels</h2>
+                <h2 class= "mb-3">Users</h2>
                 <table class= "table table-hover">
                     <thead>
                         <tr>
@@ -33,7 +33,7 @@
             </div>
         <% else %>
             <div class= "col-md-8 offset-md-1">
-                <h2 class= "mb-3">Travels</h2>
+                <h2 class= "mb-3">Books</h2>
                 <table class= "table table-hover">
                     <thead>
                         <tr>
@@ -44,7 +44,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <% @travels.each do |travel| %>
+                    <% @books.each do |book| %>
                         <tr>
                             <td align= "end" class= "pr-5">
                                 <%= link_to user_path(travel.user) do %>

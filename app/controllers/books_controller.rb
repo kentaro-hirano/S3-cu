@@ -21,6 +21,9 @@ class BooksController < ApplicationController
     (1..7).reverse_each do |i|
       @daily_counts.push(Book.where(created_at: i.day.ago.all_day).count)
     end   
+    
+    # binding.pry
+    
 
     gon.data = [] # 折れ線グラフの値を格納
     gon.data = @daily_counts

@@ -71,12 +71,12 @@
       <table class="table table-bordered mt-3">
         <tr>
           <% (1..7).reverse_each do |date| %>
-          <th><%= date == 1 ? "今日" : "#{date-1}日前" %></th>
+            <th><%= date == 1 ? "今日" : "#{date-1}日前" %></th>
           <% end %>
         </tr>
         <tr>
           <% @daily_counts.each_index do |i| %>
-          <td><%= i < 6 ? @daily_counts[i+1] : @today_posts %></td>
+            <td><%= i < 6 ? @daily_counts[i] : @today_posts %></td>
           <% end %>
         </tr>
       </table>
@@ -85,6 +85,14 @@
       <script>
         draw_graph();
       </script>
+      
+      <%= form_with url: finder_path, method: :get, class: "mt-3" do |f| %>
+        <%= f.date_field :date_form %>
+        <%= f.submit "検索" %>
+      <% end %>
+        <div class="find_result">
+          <%= render "finders/result", posts_count: @posts_count %>
+        </div>
     </div>
   </div>
 </div>
