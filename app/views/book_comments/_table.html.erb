@@ -1,16 +1,16 @@
 <% book.book_comments.each do |book_comment| %>
-  <tr>
-      <td class= "w-25">
-          <%= link_to user_path(book_comment.user) do %>
-              <%= attachment_image_tag book_comment.user, :profile_image, size: '45x45', fallback: "no-img.jpg", class: "img" %><br>
-          <% end %>
-      </td>
-      <td class= "w-25"><%= book_comment.user.name %></td>
-      <td><%= book_comment.comment %></td>
-      <td>
-          <%= link_to book_book_comments_path(book_comment.book, book_comment), method: :delete, remote: true, class: "btn btn-danger" do %>
-              <i class="fas fa-trash-alt"></i>
-          <% end %>
-      </td>
-  </tr>
+	<tr>
+		<td class= "w-25">
+			<%= link_to user_path(book_comment.user) do %>
+				<%= attachment_image_tag book_comment.user, :profile_image, size: '45x45', fallback: "no-img.jpg", class: "img" %><br>
+			<% end %>
+		</td>
+		<td class= "w-25"><%= book_comment.user.name %></td>
+		<td><%= book_comment.comment %></td>
+		<td>
+			<%= link_to book_book_comments_path(book_comment.book, book_comment), method: :delete, remote: true, class: "btn btn-danger" do %>
+				<i class="fas fa-trash-alt"></i>
+			<% end %>
+		</td>
+	</tr>
 <% end %>

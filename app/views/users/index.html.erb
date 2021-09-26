@@ -1,45 +1,46 @@
 <%= render 'layouts/finder' %>
 <div class= "container">
-    <div class= "row mt">
-        <div class= "col-md-3">
-            <%= render 'layouts/userinfo', user: current_user %>
-            <%= render 'books/newform', book: @book %>
-        </div>
-       <div class= "col-md-8 offset-md-1">
-            <h2 class= "mb-3">Books</h2>
-            <table class= "table table-hover">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>name</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                <% @users.each do |user| %>
-                    <tr>
-                        <td><%= attachment_image_tag user, :profile_image, size: '50x50', fallback: "no-img.jpg", class: "img" %></td>
-                        <td><%= user.name%></td>
-                        <td><%= user.follower.count %><span class= "follow-count">フォロー中</span></td>
-                        <td><%= user.followed.count %><span class= "followed-count">フォロワー</span></td>
-                        <td>
-                            <% if user != current_user %>
-                                <% if current_user.following?(user) %>
-                                    <%= link_to 'フォロー中', unfollow_path(user.id), method: :POST, class: "btn btn-info btn-sm followed" %>
-                                <% else %>
-                                    <%= link_to 'フォローする', follow_path(user.id), method: :POST, class: "btn btn-info btn-sm follow" %>
-                                <% end %>
-                            <% end %>
-                        </td>
-                        <td><%= link_to "詳細", user_path(user), class: "btn btn-success btn-sm" %></td>
-                    </tr> 
-                </tbody>
-                <% end %>
-            </table>
-        </div>
+	<div class= "row mt">
+    <div class= "col-md-3">
+      <%= render 'layouts/userinfo', user: current_user %>
+      <%= render 'books/newform', book: @book %>
     </div>
+    <div class= "col-md-8 offset-md-1">
+      <h2 class= "mb-3">Users</h2>
+      <%= link_to "グループを作成する", new_group_path %> | <%= link_to "グループ一覧", groups_path %>
+      <table class= "table table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th>name</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>	
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+							<td><%= attachment_image_tag user, :profile_image, size: '50x50', fallback: "no-img.jpg", class: "img" %></td>
+							<td><%= user.name%></td>
+							<td><%= user.follower.count %><span class= "follow-count">フォロー中</span></td>
+							<td><%= user.followed.count %><span class= "followed-count">フォロワー</span></td>
+							<td>
+                <% if user != current_user %>
+                  <% if current_user.following?(user) %>
+                    <%= link_to 'フォロー中', unfollow_path(user.id), method: :POST, class: "btn btn-info btn-sm followed" %>
+                  <% else %>
+                    <%= link_to 'フォローする', follow_path(user.id), method: :POST, class: "btn btn-info btn-sm follow" %>
+                  <% end %>
+                <% end %>
+							</td>
+							<td><%= link_to "詳細", user_path(user), class: "btn btn-success btn-sm" %></td>
+          </tr> 
+					<% end %>
+        </tbody>
+      </table>
+		</div>
+	</div>
 </div>
 
