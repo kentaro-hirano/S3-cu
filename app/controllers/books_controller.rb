@@ -5,6 +5,10 @@ class BooksController < ApplicationController
   def index
     if params[:search]   
       @books = Book.search(params[:search])
+    elsif params[:sort] == "latest"
+      @books = Book.all.order(created_at: "DESC")
+    elsif params[:sort] == "evaluate"
+      @books = Book.all.order(evaluation: "DESC")
     else
       @books = Book.left_joins(:favorites).group(:id).order("count(favorites.book_id) DESC")
     end
