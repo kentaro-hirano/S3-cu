@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
   resources :chats, only: [:create, :show]
-  resources :groups do  
-    get "join" => "groups#join"
+  resources :groups do
+    get "join" =>"groups#join"
+    get "new/mail" => "groups#new_mail"
+    get "send/mail" => "groups#send_mail"
   end
 end
