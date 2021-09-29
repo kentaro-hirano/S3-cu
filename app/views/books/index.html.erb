@@ -16,8 +16,9 @@
             <table class="table">
               <tr class="thead-light">
                 <th style="width: 100px">タイトル</th>
-                <th>概要</th>
+                <th style="width: 300px;">概要</th>
                 <th style="width: 110px">お気に入り</th>
+                <th></th>
               </tr>
               <tr>
                 <td><%= link_to book.title, book_path(book) %></td>
@@ -27,6 +28,7 @@
                     <%= render 'favorites/favorite', book: book %>
                   </div>
                 </td>
+                <td class="book-evaluation" data-score="<%= book.evaluation %>"></td>
               </tr>
             </table>
             <div class="text-right">
@@ -96,3 +98,12 @@
     </div>
   </div>
 </div>
+<script>
+  $('.book-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>
