@@ -6,14 +6,15 @@
       <%= render 'books/newform', book: @book %>
     </div>
     <div class="col-md-8 offset-md-1">
-      <h2 class="mb-3">Books</h2>
+      <h2 class="mb-2">Books</h2>
+      <%= link_to "新しい順", books_path(sort: "latest") %> | <%= link_to "評価の高い順", books_path(sort: "evaluate") %>
       <% @books.each do |book| %>
         <div class="books-section mb-4 w-100">
           <!-- <div>
                 <%= attachment_image_tag book, :image, size: '220x180', fallback: "no-img.jpg" %>
             </div> -->
           <div class="ml-3 w-100">
-            <table class="table">
+            <table class="table mt-3">
               <tr class="thead-light">
                 <th style="width: 100px">タイトル</th>
                 <th style="width: 300px;">概要</th>
