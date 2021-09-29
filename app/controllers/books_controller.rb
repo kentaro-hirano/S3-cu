@@ -9,6 +9,8 @@ class BooksController < ApplicationController
       @books = Book.all.order(created_at: "DESC")
     elsif params[:sort] == "evaluate"
       @books = Book.all.order(evaluation: "DESC")
+    elsif params[:category]
+      @books = Book.where(category: params[:category])
     else
       @books = Book.left_joins(:favorites).group(:id).order("count(favorites.book_id) DESC")
     end
@@ -80,6 +82,6 @@ class BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:title, :body, :image, :evaluation)
+    params.require(:book).permit(:title, :body, :image, :category, :evaluation)
   end
 end
