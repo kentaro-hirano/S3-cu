@@ -13,7 +13,8 @@
             <th>タイトル</th>
             <th>概要</th>
             <th></th>
-            <th>閲覧数</th>
+            <!-- <th>閲覧数</th> -->
+            <th>カテゴリー</th>
             <th></th>
             <th></th>
             <th></th>
@@ -29,7 +30,8 @@
               </div>
             </td>
             <td>
-              <%= @page_views %>
+              <%#= @page_views %>
+              <%= link_to @book.category, books_path(category: @book.category) %>
             </td>
             <% if @book.user == current_user %>
               <td class="book-evaluation" data-score="<%= @book.evaluation %>"></td>
